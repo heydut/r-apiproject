@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const Cards = ({ amiibos }) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-  };
+const Cards = ({ amiibos, onClickHandler }) => {
+  //   const handleClick = (e) => {
+  //     e.preventDefault();
+
+  //     console.log("The link was clicked.");
+  //   };
 
   return (
     <AllCards>
@@ -15,7 +17,7 @@ const Cards = ({ amiibos }) => {
               key={i}
               src={amiibo.image}
               alt="amiibo"
-              onClick={handleClick}
+              onClick={() => onClickHandler(i)}
             />
           </div>
         );

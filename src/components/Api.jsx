@@ -5,7 +5,9 @@ import Cards from "./Cards";
 import Modal from "./Modal";
 
 const Api = () => {
+  const [showModal, setShowModal] = useState(false);
   const [amiibos, setAmiibos] = useState([]);
+  const [card, setCard] = useState({});
 
   useEffect(() => {
     async function getMyAmiibo() {
@@ -18,14 +20,31 @@ const Api = () => {
     getMyAmiibo();
   }, []);
 
+  // function myTail(index) {
+  //   console.log(index);
+  // }
+
   // function checkType(type) {
   //   return type === "Card";
   // }
 
+  const onClickHandler = (index) => {
+    setShowModal(!showModal);
+
+    !showModal
+      ? setCard({
+          image: amiibos[index].image,
+          character: amiibos[index].character,
+          series: amiibos[index].amiiboSeries,
+          release: amiibos[index].release.jp,
+        })
+      : setCard({});
+  };
+
   return (
     <div>
-      <Cards amiibos={amiibos} />
-      {/* <Modal amiibos={amiibos} /> */}
+      <Cards onClickHandler={onClickHandler} amiibos={amiibos} />
+      {showModal && <Modal onClickHandler={onClickHandler} data={card} />}
     </div>
   );
 };
