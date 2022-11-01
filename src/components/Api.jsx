@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import Cards from "./Cards";
 import Modal from "./Modal";
 
